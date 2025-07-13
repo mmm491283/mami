@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // حذف output standalone برای Vercel
+  // تنظیمات برای Vercel
   trailingSlash: false,
   images: {
     unoptimized: true,
@@ -9,7 +9,7 @@ const nextConfig = {
   experimental: {
     esmExternals: false
   },
-  // تنظیمات Vercel
+  // Environment variables برای Vercel
   env: {
     DB_HOST: process.env.DB_HOST,
     DB_USER: process.env.DB_USER,
@@ -18,6 +18,7 @@ const nextConfig = {
     JWT_SECRET: process.env.JWT_SECRET,
     LANGCHAIN_API_URL: process.env.LANGCHAIN_API_URL,
   },
+  // Webpack config برای MySQL
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.externals.push('mysql2')
